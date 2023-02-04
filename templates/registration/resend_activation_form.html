@@ -1,7 +1,7 @@
 {% extends "registration/registration_base.html" %}
 {% load i18n crispy_forms_tags %}
 
-{% block title %}{% trans "Register for an account" %}{% endblock %}
+{% block title %}{% trans "Resend Activation Email" %}{% endblock %}
 
 {% block content %}
 <form method="post" action="">
@@ -13,9 +13,9 @@
 
 
 {% comment %}
-**registration/registration_form.html**
-Used to show the form users will fill out to register. By default, has
-the following context:
+**registration/resend_activation_form.html**
+Used to show the form users will fill out to resend the activation email. By
+default, has the following context:
 
 ``form``
 The registration form. This will be an instance of some subclass

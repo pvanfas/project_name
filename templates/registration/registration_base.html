@@ -1,1 +1,39 @@
-{% extends 'registration/base.html' %}
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth">
+            <div class="row w-100">
+                <div class="col-xl-6 col-lg-8 col-sm-10 col-12 mx-auto">
+                    <div class="row flex-grow auth-form-light border-radius">
+                        <div class="col-lg-5 d-lg-block d-none bg-auth border-radius border-right-0">
+                            <div class="py-5 px-3">
+                                <div class="brand-logo">
+                                    <img src="{% static 'main/images/logo.svg' %}">
+                                </div>
+                                <p class="text-white">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. At aliquam, fugit incidunt
+                                    inventore totam aspernatur dolorem cupiditate numquam dolorum asperiores hic
+                                    voluptate nulla quia repudiandae porro impedit quasi magnam iste!
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class=" text-left py-5 px-4">
+
+                                {% block content %}
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>
+{% endblock %}

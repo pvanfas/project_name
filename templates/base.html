@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{% block title %}{{default_title}}{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'main/vendors/mdi/css/materialdesignicons.min.css' %}">
+  <link rel="stylesheet" href="{% static 'main/vendors/css/vendor.bundle.base.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+  {% block plugin_css %}{% endblock %}
+  <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'main/css/custom.css' %}">
+  {% block custom_css %}{% endblock %}
+  <link rel="shortcut icon" href="{% static 'main/images/favicon.ico' %}" />
+
+</head>
+
+<body>
+
+  {% block body %}
+  <div class="container-scroller">
+
+    {% include 'partials/_navbar.html' %}
+
+    <div class="container-fluid page-body-wrapper">
+
+      {% include 'partials/_navbar.html' %}
+      {% include 'partials/_sidebar.html' %}
+
+      <div class="main-panel">
+        <div class="content-wrapper">
+          {% block content %}{% endblock %}
+        </div>
+
+        {% include 'partials/_footer.html' %}
+
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+
+  <script src="{% static 'main/vendors/js/vendor.bundle.base.js' %}"></script>
+  {% block plugin_js %}{% endblock %}
+  <script src="{% static 'main/js/off-canvas.js' %}"></script>
+  <script src="{% static 'main/js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'main/js/misc.js' %}"></script>
+  {% block custom_js %}{% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+{% extends 'registration/base.html' %}
+
+{% load static widget_tweaks %}
+
+{% block content %}
+
+<h4 class="mb-3 text-center">Login to your account</h4>
+<form class="login-form validate-form" action="" method="post">
+    {% csrf_token %}
+    {{form.non_field_errors}}
+
+    <div class="wrap-input">
+        {{form.username.errors}}
+        {{form.username|add_class:"input_field"|attr:"placeholder:Email"}}
+        <span class="symbol-input_field">
+            <i class="feather ft-mail"></i>
+        </span>
+    </div>
+
+
+    <div class="wrap-input mb-0">
+        {{form.password.errors}}
+        <input class="input_field" type="password" name="password" placeholder="Password" required />
+        <span class="symbol-input_field">
+            <i class="feather ft-lock"></i>
+        </span>
+    </div>
+
+    <div>
+        <a href="{% url 'auth_password_reset' %}" class="forget_link">Forgot Password</a>
+    </div>
+
+    <div class="container-login-form-btn mt-2">
+        <button class="rt_btn_color d-block w-100" type="submit">Login</button>
+    </div>
+
+    <div class="text-center w-100">
+        <a href="{% url 'registration_register' %}" class="rt_btn_color_border d-block w-100">Sign up now</a>
+    </div>
+
+</form>
+
+
+{% endblock %}

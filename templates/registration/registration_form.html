@@ -1,0 +1,87 @@
+{% extends "registration/registration_base.html" %}
+{% load i18n crispy_forms_tags %}
+
+{% block title %}{% trans "Register for an account" %}{% endblock %}
+
+{% block content %}
+
+<form method="post" action="">
+    {% csrf_token %}
+    {{ form|crispy }}
+
+    <div id="div_id_referral" class="mb-0">
+        <label for="id_referral" class="form-label ">Referral Code</label>
+        <input type="text" name="referral" class="form-control referralinput" placeholder="Enter Referral Code if any"
+            maxlength="254" id="id_referral">
+        <button type="button" class="button">Apply</button>
+    </div>
+    <div id="ref_message" class="mb-4" style="font-size:12px"></div>
+
+    <input type="submit" class="rt_btn_color d-block w-100" value="{% trans 'Submit' %}" />
+
+    <div class="text-center w-100">
+        <a href="{% url 'auth_login' %}" class="rt_btn_color_border d-block w-100">Login Instead</a>
+    </div>
+
+</form>
+{% endblock %}
+
+{% block javascript %}
+<script>
+    // if referral code is present in url, then add it to the referral code input field
+    var urlParams = new URLSearchParams(window.location.search);
+    var referral = urlParams.get('referral');
+    if (referral) {
+        document.querySelector('.referralinput').value = referral;
+        getUser(referral);
+    }
+
+
+    $(document).ready(function () {
+        $('.button').on('click', function (e) {
+            var referral = $('.referralinput').val();
+            getUser(referral);
+        });
+    });
+
+    function getUser(referral) {
+        var message_elm = document.querySelector('#ref_message');
+        $.ajax({
+            url: '/app/check_referral/',
+            type: 'GET',
+            data: {
+                referral: referral
+            },
+            success: function (data) {
+                if (data.status == 'success') {
+                    var text = "Referral Code Valid. You are referred by " + data.user_data.name;
+                    message_elm.innerHTML = text;
+                    message_elm.classList.add('text-success');
+                    Toastify({
+                        text: text,
+                        duration: 3000,
+                        className: "success",
+                        style: {
+                            background: "linear-gradient(to right, #00b09b, #96c93d)",
+                        }
+                    }).showToast();
+                } else {
+                    var text = "Referral Code Invalid";
+                    message_elm.innerHTML = text;
+                    message_elm.classList.add('text-danger');
+                    Toastify({
+                        text: text,
+                        duration: 3000,
+                        className: "error",
+                        style: {
+                            background: "linear-gradient(to right, #ff5f6d, #ffc371)",
+                        }
+                    }).showToast();
+                }
+            }, error: function (data) {
+                console.log(data);
+            }
+        });
+    }
+</script>
+{% endblock %}

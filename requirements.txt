@@ -4,4 +4,3 @@ crispy-bootstrap5
 django-extensions
 django-import-export
 django-registration-redux
-django-widget-tweaks

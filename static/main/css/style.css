@@ -16318,7 +16318,7 @@ h6,
 }
 
 p {
-  font-size: .9375rem;
+  font-size: .85rem;
   line-height: 1.5;
 }
 
@@ -19558,7 +19558,7 @@ code {
 .input-group-append .input-group-text,
 .input-group-prepend .input-group-text {
   border-color: #ebedf2;
-  padding: 0.94rem 0.75rem;
+  padding: 0.7rem 0.7rem;
   color: #c9c8c8;
 }
 
@@ -20311,7 +20311,7 @@ dl li {
 
 .navbar .navbar-menu-wrapper .search-field .input-group input {
   font-size: 0.875rem;
-  padding: .5rem;
+  padding: .5rem 0.8rem;
 }
 
 .navbar .navbar-menu-wrapper .search-field .input-group input:-ms-input-placeholder {
@@ -21391,7 +21391,6 @@ dl li {
 
 .form-label {
   margin-bottom: 0.5rem;
-  font-style: italic;
   font-weight: 400;
   font-size: small;
 }

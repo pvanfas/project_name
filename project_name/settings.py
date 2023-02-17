@@ -2,7 +2,6 @@ from pathlib import Path
 
 from decouple import config
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config("SECRET_KEY")
@@ -10,7 +9,6 @@ SECRET_KEY = config("SECRET_KEY")
 DEBUG = config("DEBUG", default=True, cast=bool)
 
 ALLOWED_HOSTS = ["*"]
-
 
 INSTALLED_APPS = [
     "registration",
@@ -40,25 +38,22 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "project_name.urls"
 
-TEMPLATES = [
-    {
-        "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],
-        "APP_DIRS": True,
-        "OPTIONS": {
-            "context_processors": [
-                "django.template.context_processors.debug",
-                "django.template.context_processors.request",
-                "django.contrib.auth.context_processors.auth",
-                "django.contrib.messages.context_processors.messages",
-                "main.context_processors.main_context",
-            ]
-        },
-    }
-]
+TEMPLATES = [{
+    "BACKEND": "django.template.backends.django.DjangoTemplates",
+    "DIRS": [BASE_DIR / "templates"],
+    "APP_DIRS": True,
+    "OPTIONS": {
+        "context_processors": [
+            "django.template.context_processors.debug",
+            "django.template.context_processors.request",
+            "django.contrib.auth.context_processors.auth",
+            "django.contrib.messages.context_processors.messages",
+            "main.context_processors.main_context",
+        ]
+    },
+}]
 
 WSGI_APPLICATION = "project_name.wsgi.application"
-
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -78,12 +73,23 @@ DATABASES = {
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
+    {
+        "NAME":
+        "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
+    },
+    {
+        "NAME":
+        "django.contrib.auth.password_validation.MinimumLengthValidator"
+    },
+    {
+        "NAME":
+        "django.contrib.auth.password_validation.CommonPasswordValidator"
+    },
+    {
+        "NAME":
+        "django.contrib.auth.password_validation.NumericPasswordValidator"
+    },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -93,7 +99,6 @@ TIME_ZONE = "Asia/Kolkata"
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-
 
 USE_L10N = False
 DATE_INPUT_FORMATS = (
@@ -126,7 +131,7 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 STATIC_URL = "/static/"
 STATIC_FILE_ROOT = BASE_DIR / "static"
-STATICFILES_DIRS = ((BASE_DIR / "static"),)
+STATICFILES_DIRS = ((BASE_DIR / "static"), )
 STATIC_ROOT = BASE_DIR / "assets"
 
 # Default primary key field type
@@ -151,7 +156,8 @@ LOGIN_URL = "/accounts/login/"
 LOGOUT_URL = "/accounts/logout/"
 LOGIN_REDIRECT_URL = "/main/"
 
-EMAIL_BACKEND = config("EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend")
+EMAIL_BACKEND = config("EMAIL_BACKEND",
+                       default="django.core.mail.backends.smtp.EmailBackend")
 EMAIL_HOST = config("EMAIL_HOST", default="localhost")
 EMAIL_PORT = config("EMAIL_PORT", default=25)
 EMAIL_HOST_USER = config("EMAIL_HOST_USER", default=None)
@@ -162,5 +168,9 @@ DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default=None)
 DEFAULT_BCC_EMAIL = config("DEFAULT_BCC_EMAIL", default=None)
 DEFAULT_REPLY_TO_EMAIL = config("DEFAULT_REPLY_TO_EMAIL", default=None)
 
-
-DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3"
+    }
+}
